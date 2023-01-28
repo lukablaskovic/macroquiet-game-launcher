@@ -64,3 +64,45 @@
     -fx-background-position: top center;
     -fx-background-repeat: no-repeat;
 }
+
+.system {
+    -fx-background-image: url("images/cog.png");
+    -fx-background-size: contain;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+.download {
+    -fx-background-image: url("images/download.png");
+    -fx-background-size: contain;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+.play {
+    -fx-background-image: url("images/play.png");
+    -fx-background-size: contain;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+.scroll-pane{
+   -fx-background-color:transparent;
+}
+
+.scroll-pane > .viewport {  //not .scrollpane but .scroll-pane
+   -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:horizontal {
+   -fx-background-color: rgba(125, 139, 157, 0.05);
+   -fx-background-radius: 50px;
+}
+
+.scroll-pane > .scroll-bar:horizontal > .thumb {
+   -fx-background-color: rgb(107, 101, 107);
+}
+
+.scroll-pane > .scroll-bar:horizontal > .thumb:hover {
+   -fx-background-color: #e55249;
+}
