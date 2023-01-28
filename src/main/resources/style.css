@@ -1,0 +1,14 @@
+.appFont {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menuButton{
+    -fx-background-color:  transparent;
+    -fx-background-radius: 50px;
+    -fx-padding: 4px 8px 4px 8px;
+
+}
+.menuButton:hover{
+    -fx-background-color:  #242324;
+}
