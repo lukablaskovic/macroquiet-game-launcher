@@ -27,7 +27,7 @@
             <Pane prefWidth="2.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;" />
             <HBox alignment="CENTER">
                <children>
-                  <Button id="loginBTN" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="menuButton2" stylesheets="@../../../style.css" text="BACK" textFill="#e7e5e4">
+                  <Button id="backBTN" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="menuButton2" stylesheets="@../../../style.css" text="BACK" textFill="#e7e5e4">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -85,12 +85,12 @@
                         <Insets top="-12.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField maxWidth="400.0" promptText="E-mail" styleClass="textField" stylesheets="@../../../loginStyle.css" VBox.vgrow="NEVER">
+                  <TextField id="userEmail" maxWidth="400.0" promptText="E-mail" styleClass="textField" stylesheets="@../../../loginStyle.css" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets top="16.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField maxWidth="400.0" promptText="Password" styleClass="textField" stylesheets="@../../../loginStyle.css">
+                  <PasswordField id="userPassword" maxWidth="400.0" promptText="Password" styleClass="textField" stylesheets="@../../../loginStyle.css">
                      <VBox.margin>
                         <Insets top="16.0" />
                      </VBox.margin>

@@ -63,24 +63,14 @@ public class APIConnector {
             connection = (HttpURLConnection) url.openConnection();
 
             //Request setup
-
             connection.setRequestMethod("POST");
             connection.setConnectTimeout(10000);
             connection.setReadTimeout(10000);
             byte[] postBytes = userCredentials.toString().getBytes("UTF-8");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Content-Length", String.valueOf(postBytes.length));
-            //connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
             connection.getOutputStream().write(postBytes);
-
-            /*
-            try(OutputStream os = connection.getOutputStream()) {
-                byte[] input = userCredentials.toString().getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-            */
-
 
             int status = connection.getResponseCode();
 

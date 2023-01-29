@@ -31,7 +31,18 @@
                   <Image url="@../../../images/macroquiet_logo.png" />
                </image>
             </ImageView>
-            <Pane HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label id="username" stylesheets="@../../../style.css" textFill="#e7e5e4">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="16.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
             <Pane prefWidth="2.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;" />
             <HBox alignment="CENTER">
                <children>

@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class MainApplication extends Application {
     public static ArrayList<String> carouselURLs;
-    public static JSONObject receivedCredentials;
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
@@ -30,24 +29,6 @@ public class MainApplication extends Application {
         carouselURLs = loadImagesTask.getResult();
         //Change images in scene
         SceneChanger.setup(scene, stage);
-
-        String userEmail = "lukablaskovic2000@gmail.com";
-        String userPassword = "123";
-
-        //Spremanje u JSON
-        JSONObject userCredentials = new JSONObject();
-        userCredentials.put("email", userEmail);
-        userCredentials.put("password", userPassword);
-        System.out.println(userCredentials);
-
-
-        LoginUserTask loginUserTask = new LoginUserTask("https://macroquiet.herokuapp.com/auth/unity", userCredentials);
-        Thread loginUserThread = new Thread(loginUserTask);
-        loginUserThread.start();
-        loginUserThread.join();
-        //Stores user credentials
-        receivedCredentials = loginUserTask.getResult();
-
     }
     public static void main(String[] args) {
         launch();

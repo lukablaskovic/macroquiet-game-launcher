@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +40,7 @@ public class SceneChanger {
     public static Pane ratingIMG;
     public static FlowPane ratingDesc;
     public static Button loginBTN;
+    public static Label username;
 
     public static ArrayList<String> dogeCarouselImages = new ArrayList<>();
     public static void setup(Scene scene, Stage stage) {
@@ -58,18 +60,26 @@ public class SceneChanger {
         System.out.println(ratingIMG);
         ratingDesc = (FlowPane)scene.lookup("#ratingDesc");
         loginBTN = (Button)scene.lookup("#loginBTN");
+        username = (Label)scene.lookup("#username");
+        if (LogInChanger.receivedCredentials != null) {
+            username.setText(LogInChanger.receivedCredentials.getString("username"));
+            loginBTN.setText("SIGN OUT");
+            loginBTN.setOnAction(event -> {
+                LogInChanger.receivedCredentials = null;
+                username.setText("");
+                loginBTN.setText("LOG IN");
+                setLogin(stage);
+            });
+        }
+        else {
+            setLogin(stage);
+        }
 
         enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
         StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
         DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
         systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
-        loginBTN.setOnAction(event -> {
-            try {
-                switchToScene(stage, "logIn-view");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+
         toggleSystemRequirements(systemRequirementsSplitPane);
 
         updateCarousel(MainApplication.carouselURLs);
@@ -97,6 +107,15 @@ public class SceneChanger {
             dogeCarouselImages.add("https://i.imgur.com/nWlSUNs.png");
         }
     }
+    private static void setLogin(Stage stage) {
+        loginBTN.setOnAction(event -> {
+            try {
+                switchToScene(stage, "logIn-view");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
     private static void updateCarousel(ArrayList<String> array) {
         gameCarousel.getChildren().clear();
 
@@ -115,7 +134,7 @@ public class SceneChanger {
             int finalI = i;
             imageView.setOnMouseClicked(event -> zoomImage(String.valueOf(array.get(finalI))));
 
-            imageView.setImage(new Image(array.get(i)));
+            imageView.setImage(new Image(array.get(i), true));
             gameCarousel.getChildren().add(imageView);
         }
     }
@@ -173,7 +192,6 @@ public class SceneChanger {
     private static void changeGame(String name) {
         switch (name) {
             case "StrandedAway":
-                System.out.println(name);
                 StrandedAwayBTN.getStyleClass().add("strandedAwayIconSelected");
                 DogeBTN.getStyleClass().remove("dogeIconSelected");
                 DogeBTN.getStyleClass().remove("dogeIconSelected");
@@ -185,9 +203,9 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().add("ratingT");
                 setRatingDesc(new String[] {"Fantasy Violence", "Animated Blood", "Use of Alcohol and Tobacco"});
                 updateCarousel(MainApplication.carouselURLs);
+                watchTrailer.setVisible(true);
                 break;
             case "Doge":
-                System.out.println(name);
                 DogeBTN.getStyleClass().add("dogeIconSelected");
                 StrandedAwayBTN.getStyleClass().remove("strandedAwayIconSelected");
                 StrandedAwayBTN.getStyleClass().remove("strandedAwayIconSelected");
@@ -200,6 +218,7 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().add("ratingE");
                 setRatingDesc(new String[] {"Comic Mischief", "Mild Lyrics"});
                 updateCarousel(dogeCarouselImages);
+                watchTrailer.setVisible(false);
                 break;
         }
     }

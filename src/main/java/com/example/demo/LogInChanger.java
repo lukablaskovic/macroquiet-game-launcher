@@ -4,7 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,17 +15,34 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class LogInChanger {
-    public static Button loginBTN;
+    public static Button backBTN;
     public static Label register;
+    public static Button loginBTN;
+    public static TextField email;
+    public static PasswordField password;
+
+    public static Stage stage2;
+
+    public static JSONObject receivedCredentials;
     public static void setup(Scene scene, Stage stage) {
+        backBTN = (Button) scene.lookup("#backBTN");
         loginBTN = (Button) scene.lookup("#loginBTN");
         register = (Label) scene.lookup("#register");
+        email = (TextField) scene.lookup("#userEmail");
+        password = (PasswordField) scene.lookup("#userPassword");
         goToLink("https://macroquiet.com/register");
-
-        loginBTN.setOnAction(event -> {
+        stage2 = stage;
+        backBTN.setOnAction(event -> {
             try {
                 switchToScene(stage, "hello-view");
             } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        loginBTN.setOnAction(event -> {
+            try {
+                LogInUser();
+            } catch (InterruptedException | IOException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -44,5 +64,23 @@ public class LogInChanger {
                 throw new RuntimeException(e);
             }
         });
+    }
+    private static void LogInUser() throws InterruptedException, IOException {
+        String userEmail = email.getText();
+        String userPassword = password.getText();
+
+        //Spremanje u JSON
+        JSONObject userCredentials = new JSONObject();
+        userCredentials.put("email", userEmail);
+        userCredentials.put("password", userPassword);
+        System.out.println(userCredentials);
+
+        LoginUserTask loginUserTask = new LoginUserTask("https://macroquiet.herokuapp.com/auth/unity", userCredentials);
+        Thread loginUserThread = new Thread(loginUserTask);
+        loginUserThread.start();
+        loginUserThread.join();
+        //Stores user credentials
+        receivedCredentials = loginUserTask.getResult();
+        switchToScene(stage2, "hello-view");
     }
 }
