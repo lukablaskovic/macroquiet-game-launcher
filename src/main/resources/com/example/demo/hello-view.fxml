@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0f1119;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="840.0" minWidth="1400.0" style="-fx-background-color: #0f1119;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox style="-fx-background-color: #111011;">
          <children>
@@ -71,10 +71,14 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <children>
-                        <HBox styleClass="strandedAwayIcon" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
+                        <HBox id="StrandedAwayBTN" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <styleClass>
+                              <String fx:value="strandedAwayIcon" />
+                              <String fx:value="strandedAwayIconSelected" />
+                           </styleClass>
                         </HBox>
                      </children>
                      <cursor>
@@ -86,7 +90,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <children>
-                        <HBox styleClass="dogeIcon" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
+                        <HBox id="DogeBTN" styleClass="dogeIcon" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -103,216 +107,223 @@
             </FlowPane>
             <HBox HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane styleClass="gameCover" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
+                  <StackPane id="gameCover" styleClass="gameCover" stylesheets="@../../../style.css" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox styleClass="fadeCover" stylesheets="@../../../style.css">
                            <children>
-                              <GridPane HBox.hgrow="ALWAYS">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="NEVER" maxWidth="494.0" minWidth="402.0" prefWidth="402.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="609.0" minWidth="10.0" prefWidth="290.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="355.0" valignment="CENTER" />
-                                    <RowConstraints minHeight="0.0" vgrow="ALWAYS" />
-                                    <RowConstraints vgrow="ALWAYS" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Pane maxHeight="300.0" maxWidth="900.0" minHeight="300.0" minWidth="900.0" prefHeight="300.0" prefWidth="900.0" styleClass="gameTitle" stylesheets="@../../../style.css" GridPane.columnSpan="2147483647" />
-                                    <HBox fillHeight="false" styleClass="rating" stylesheets="@../../../style.css" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
-                                       </GridPane.margin>
+                              <ScrollPane nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
+                                 <content>
+                                    <GridPane>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="NEVER" minWidth="402.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="355.0" valignment="CENTER" />
+                                          <RowConstraints minHeight="0.0" valignment="TOP" vgrow="ALWAYS" />
+                                          <RowConstraints vgrow="ALWAYS" />
+                                       </rowConstraints>
                                        <children>
-                                          <FlowPane columnHalignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWrapLength="300.0" HBox.hgrow="ALWAYS">
+                                          <Pane id="gameTitle" maxHeight="300.0" maxWidth="900.0" minHeight="300.0" minWidth="900.0" prefHeight="300.0" prefWidth="900.0" styleClass="gameTitle" stylesheets="@../../../style.css" GridPane.columnSpan="2147483647" />
+                                          <HBox fillHeight="false" minHeight="380.0" styleClass="rating" stylesheets="@../../../style.css" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                                             </GridPane.margin>
                                              <children>
-                                                <FlowPane hgap="16.0" prefWidth="307.0">
+                                                <FlowPane columnHalignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWrapLength="300.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Pane minHeight="150.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
-                                                      <FlowPane alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="100.0" prefWrapLength="300.0" vgap="8.0">
+                                                      <FlowPane hgap="16.0" prefWidth="307.0">
                                                          <children>
-                                                            <Label styleClass="appFont" stylesheets="@../../../style.css" text="Fantasy Violence" textFill="#e7e5e4">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label styleClass="appFont" stylesheets="@../../../style.css" text="Animated Blood" textFill="#e7e5e4">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label styleClass="appFont" stylesheets="@../../../style.css" text="Use of Alcohol and Tobacco" textFill="#e7e5e4">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
-                                                            </Label>
+                                                            <Pane minHeight="150.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
+                                                            <FlowPane alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="100.0" prefWrapLength="300.0" vgap="8.0">
+                                                               <children>
+                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Fantasy Violence" textFill="#e7e5e4">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Animated Blood" textFill="#e7e5e4">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Use of Alcohol and Tobacco" textFill="#e7e5e4">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <FlowPane.margin>
+                                                                  <Insets />
+                                                               </FlowPane.margin>
+                                                            </FlowPane>
                                                          </children>
-                                                         <FlowPane.margin>
-                                                            <Insets />
-                                                         </FlowPane.margin>
                                                       </FlowPane>
+                                                      <Pane prefHeight="2.0" prefWidth="307.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;">
+                                                         <FlowPane.margin>
+                                                            <Insets bottom="16.0" top="16.0" />
+                                                         </FlowPane.margin>
+                                                      </Pane>
+                                                      <HBox alignment="CENTER" prefWidth="307.0">
+                                                         <children>
+                                                            <Button graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton" text="SYSTEM REQUIREMENTS" textFill="#e7e5e4">
+                                                               <graphic>
+                                                                  <Pane minHeight="25.0" prefWidth="25.0" styleClass="system" stylesheets="@../../../style.css" />
+                                                               </graphic>
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets right="16.0" />
+                                                               </padding>
+                                                               <cursor>
+                                                                  <Cursor fx:constant="HAND" />
+                                                               </cursor>
+                                                            </Button>
+                                                         </children>
+                                                         <cursor>
+                                                            <Cursor fx:constant="DEFAULT" />
+                                                         </cursor>
+                                                      </HBox>
                                                    </children>
                                                 </FlowPane>
-                                                <Pane prefHeight="2.0" prefWidth="307.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;">
-                                                   <FlowPane.margin>
-                                                      <Insets bottom="16.0" top="16.0" />
-                                                   </FlowPane.margin>
-                                                </Pane>
-                                                <HBox alignment="CENTER" prefWidth="307.0">
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox prefHeight="313.0" prefWidth="249.0" styleClass="rating" stylesheets="@../../../style.css" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                             <GridPane.margin>
+                                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                                             </GridPane.margin>
+                                             <children>
+                                                <VBox HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Button graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton" text="SYSTEM REQUIREMENTS" textFill="#e7e5e4">
-                                                         <graphic>
-                                                            <Pane minHeight="25.0" prefWidth="25.0" styleClass="system" stylesheets="@../../../style.css" />
-                                                         </graphic>
+                                                      <HBox spacing="16.0">
+                                                         <children>
+                                                            <Button graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="DOWNLOAD" textFill="#e7e5e4">
+                                                               <graphic>
+                                                                  <Pane minHeight="25.0" prefWidth="25.0" styleClass="download" stylesheets="@../../../style.css" />
+                                                               </graphic>
+                                                               <cursor>
+                                                                  <Cursor fx:constant="HAND" />
+                                                               </cursor>
+                                                               <font>
+                                                                  <Font name="System Bold" size="24.0" />
+                                                               </font>
+                                                            </Button>
+                                                            <Separator orientation="VERTICAL" />
+                                                            <Button id="watchTrailer" graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="WATCH TRAILER" textFill="#e7e5e4">
+                                                               <graphic>
+                                                                  <Pane minHeight="25.0" prefWidth="25.0" styleClass="play" stylesheets="@../../../style.css" />
+                                                               </graphic>
+                                                               <cursor>
+                                                                  <Cursor fx:constant="HAND" />
+                                                               </cursor>
+                                                               <font>
+                                                                  <Font name="System Bold" size="24.0" />
+                                                               </font>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                      <ScrollPane fitToWidth="true" minHeight="200.0" stylesheets="@../../../style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                                                         <content>
+                                                            <HBox id="gameCarousel">
+                                                               <children>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/1.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/2.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/3.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/4.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/5.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../../images/carousel/6.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                               </children>
+                                                            </HBox>
+                                                         </content>
+                                                         <padding>
+                                                            <Insets top="16.0" />
+                                                         </padding>
+                                                      </ScrollPane>
+                                                      <Label id="about" text="ABOUT" textFill="#e7e5e4">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets left="16.0" top="8.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Text fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
                                                          <font>
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>
-                                                         <padding>
-                                                            <Insets right="16.0" />
-                                                         </padding>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </Button>
+                                                         <VBox.margin>
+                                                            <Insets left="16.0" top="8.0" />
+                                                         </VBox.margin>
+                                                      </Text>
                                                    </children>
-                                                   <cursor>
-                                                      <Cursor fx:constant="DEFAULT" />
-                                                   </cursor>
-                                                </HBox>
+                                                </VBox>
                                              </children>
-                                          </FlowPane>
+                                          </HBox>
                                        </children>
-                                       <padding>
-                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox prefHeight="313.0" prefWidth="249.0" styleClass="rating" stylesheets="@../../../style.css" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
-                                       <padding>
-                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                       </padding>
-                                       <GridPane.margin>
-                                          <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <VBox HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <HBox spacing="16.0">
-                                                   <children>
-                                                      <Button graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="DOWNLOAD" textFill="#e7e5e4">
-                                                         <graphic>
-                                                            <Pane minHeight="25.0" prefWidth="25.0" styleClass="download" stylesheets="@../../../style.css" />
-                                                         </graphic>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                         <font>
-                                                            <Font name="System Bold" size="24.0" />
-                                                         </font>
-                                                      </Button>
-                                                      <Separator orientation="VERTICAL" />
-                                                      <Button graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="WATCH TRAILER" textFill="#e7e5e4">
-                                                         <graphic>
-                                                            <Pane minHeight="25.0" prefWidth="25.0" styleClass="play" stylesheets="@../../../style.css" />
-                                                         </graphic>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                         <font>
-                                                            <Font name="System Bold" size="24.0" />
-                                                         </font>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                                <ScrollPane stylesheets="@../../../style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
-                                                   <content>
-                                                      <HBox id="gameCarousel">
-                                                         <children>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/1.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/2.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/3.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/4.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/5.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                            <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../../../images/carousel/6.png" />
-                                                               </image>
-                                                               <HBox.margin>
-                                                                  <Insets left="8.0" right="8.0" />
-                                                               </HBox.margin>
-                                                            </ImageView>
-                                                         </children>
-                                                      </HBox>
-                                                   </content>
-                                                   <padding>
-                                                      <Insets top="16.0" />
-                                                   </padding>
-                                                </ScrollPane>
-                                                <Separator prefWidth="200.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="8.0" top="8.0" />
-                                                   </VBox.margin>
-                                                </Separator>
-                                                <Label id="about" text="ABOUT" textFill="#e7e5e4">
-                                                   <font>
-                                                      <Font name="System Bold" size="18.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets left="16.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <Text fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
-                                                   <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets left="16.0" top="8.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </GridPane>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </HBox>
+                        <VBox pickOnBounds="false" style="-fx-background-color: #0f1119;" visible="false">
+                           <children>
+                              <HBox id="enlargeImage" style="-fx-background-color: white;" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </StackPane>
                </children>

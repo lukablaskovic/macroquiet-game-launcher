@@ -9,6 +9,8 @@ module com.example.demo {
     requires com.almasb.fxgl.all;
 
     requires java.net.http;
+    requires java.datatransfer;
+    requires java.desktop;
 
     opens com.example.demo to javafx.fxml;
     exports com.example.demo;
