@@ -7,8 +7,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -132,12 +134,12 @@
                                                 <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
                                              </GridPane.margin>
                                              <children>
-                                                <FlowPane columnHalignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWrapLength="300.0" HBox.hgrow="ALWAYS">
+                                                <VBox HBox.hgrow="ALWAYS">
                                                    <children>
                                                       <FlowPane hgap="16.0" prefWidth="307.0">
                                                          <children>
-                                                            <Pane minHeight="150.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
-                                                            <FlowPane alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="100.0" prefWrapLength="300.0" vgap="8.0">
+                                                            <Pane id="ratingIMG" minHeight="150.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
+                                                            <FlowPane id="ratingDesc" alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="100.0" prefWrapLength="300.0" vgap="8.0">
                                                                <children>
                                                                   <Label styleClass="appFont" stylesheets="@../../../style.css" text="Fantasy Violence" textFill="#e7e5e4">
                                                                      <font>
@@ -161,34 +163,44 @@
                                                             </FlowPane>
                                                          </children>
                                                       </FlowPane>
-                                                      <Pane prefHeight="2.0" prefWidth="307.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;">
-                                                         <FlowPane.margin>
-                                                            <Insets bottom="16.0" top="16.0" />
-                                                         </FlowPane.margin>
-                                                      </Pane>
-                                                      <HBox alignment="CENTER" prefWidth="307.0">
-                                                         <children>
-                                                            <Button graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton" text="SYSTEM REQUIREMENTS" textFill="#e7e5e4">
-                                                               <graphic>
-                                                                  <Pane minHeight="25.0" prefWidth="25.0" styleClass="system" stylesheets="@../../../style.css" />
-                                                               </graphic>
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
-                                                               <padding>
-                                                                  <Insets right="16.0" />
-                                                               </padding>
-                                                               <cursor>
-                                                                  <Cursor fx:constant="HAND" />
-                                                               </cursor>
-                                                            </Button>
-                                                         </children>
+                                                      <Separator>
+                                                         <VBox.margin>
+                                                            <Insets bottom="8.0" top="16.0" />
+                                                         </VBox.margin>
+                                                      </Separator>
+                                                      <Button id="systemRequirementsBTN" graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton" text="MINIMUM SYSTEM REQUIREMENTS" textFill="#e7e5e4">
+                                                         <graphic>
+                                                            <Pane minHeight="25.0" prefWidth="25.0" styleClass="system" stylesheets="@../../../style.css" />
+                                                         </graphic>
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <padding>
+                                                            <Insets right="16.0" />
+                                                         </padding>
                                                          <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
+                                                            <Cursor fx:constant="HAND" />
                                                          </cursor>
-                                                      </HBox>
+                                                         <VBox.margin>
+                                                            <Insets bottom="8.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <SplitPane id="systemRequirementsSplitPane" dividerPositions="50.0" orientation="VERTICAL" pickOnBounds="false" style="-fx-background-color: transparent;">
+                                                        <items>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                               <children>
+                                                                  <VBox id="systemRequirements" style="-fx-background-color: rgba(231,229,228,0.1); -fx-background-radius: 4px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <padding>
+                                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                                     </padding>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" />
+                                                        </items>
+                                                      </SplitPane>
                                                    </children>
-                                                </FlowPane>
+                                                </VBox>
                                              </children>
                                              <padding>
                                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -231,7 +243,7 @@
                                                             </Button>
                                                          </children>
                                                       </HBox>
-                                                      <ScrollPane fitToWidth="true" minHeight="200.0" stylesheets="@../../../style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                                                      <ScrollPane fitToWidth="true" minHeight="200.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
                                                          <content>
                                                             <HBox id="gameCarousel">
                                                                <children>
@@ -290,7 +302,7 @@
                                                             <Insets top="16.0" />
                                                          </padding>
                                                       </ScrollPane>
-                                                      <Label id="about" text="ABOUT" textFill="#e7e5e4">
+                                                      <Label text="ABOUT" textFill="#e7e5e4">
                                                          <font>
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
@@ -298,7 +310,7 @@
                                                             <Insets left="16.0" top="8.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Text fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
+                                                      <Text id="aboutGame" fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
                                                          <font>
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>

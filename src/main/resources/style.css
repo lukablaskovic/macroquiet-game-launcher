@@ -78,6 +78,19 @@
     -fx-background-position: top center;
     -fx-background-repeat: no-repeat;
 }
+.ratingT {
+    -fx-background-image: url("images/ratings/t.png");
+    -fx-background-size: contain;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
+
+.ratingE {
+    -fx-background-image: url("images/ratings/e.png");
+    -fx-background-size: contain;
+    -fx-background-position: top center;
+    -fx-background-repeat: no-repeat;
+}
 
 .system {
     -fx-background-image: url("images/cog.png");
@@ -95,9 +108,9 @@
 
 .play {
     -fx-background-image: url("images/play.png");
-    -fx-background-size: contain;
-    -fx-background-position: top center;
-    -fx-background-repeat: no-repeat;
+     -fx-background-size: contain;
+     -fx-background-position: top center;
+     -fx-background-repeat: no-repeat;
 }
 
 .scroll-pane, .scroll-pane > .corner{
@@ -119,4 +132,14 @@
 
 .scroll-pane > .scroll-bar:horizontal > .thumb:hover, .scroll-bar:vertical > .thumb:hover {
    -fx-background-color: #e55249;
+}
+
+.textArea {
+    -fx-highlight-fill: red;
+    -fx-highlight-text-fill: red;
+    -fx-prompt-text-fill: red;
+}
+
+.split-pane .split-pane-divider {
+    -fx-opacity: 0;
 }

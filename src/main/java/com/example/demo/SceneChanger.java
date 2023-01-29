@@ -1,14 +1,20 @@
 package com.example.demo;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.awt.*;
 
@@ -24,6 +30,12 @@ public class SceneChanger {
     public static HBox DogeBTN;
     public static Pane gameTitle;
     public static StackPane gameCover;
+    public static VBox systemRequirements;
+    public static Button systemRequirementsBTN;
+    public static SplitPane systemRequirementsSplitPane;
+    public static Text aboutGame;
+    public static Pane ratingIMG;
+    public static FlowPane ratingDesc;
     public static void setup(Scene scene) {
         System.out.println(scene);
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
@@ -33,13 +45,32 @@ public class SceneChanger {
         DogeBTN = (HBox)scene.lookup("#DogeBTN");
         gameTitle = (Pane)scene.lookup("#gameTitle");
         gameCover = (StackPane)scene.lookup("#gameCover");
+        systemRequirements = (VBox)scene.lookup("#systemRequirements");
+        systemRequirementsBTN = (Button)scene.lookup("#systemRequirementsBTN");
+        systemRequirementsSplitPane = (SplitPane)scene.lookup("#systemRequirementsSplitPane");
+        aboutGame = (Text)scene.lookup("#aboutGame");
+        ratingIMG = (Pane)scene.lookup("#ratingIMG");
+        System.out.println(ratingIMG);
+        ratingDesc = (FlowPane)scene.lookup("#ratingDesc");
 
         enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
         StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
         DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
+        systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
+        toggleSystemRequirements(systemRequirementsSplitPane);
 
         updateCarousel(new String[]{"https://picsum.photos/200/300", "https://picsum.photos/200/300", "https://picsum.photos/200/300"});
         updateTrailer("https://youtu.be/FB92RX_obXA");
+        setSystemRequirements(new String[] {
+                "4 core CPU",
+                "4 GB RAM",
+                "Windows, macOS, Linux",
+                "Graphics: nVidia GeForce GTX 660 2GB/ AMD Radeon HD 7850 2gb",
+                "Processor: Intel Core i3-4340 / AMD FX-6300",
+                "Memory: 4 GB RAM",
+                "DirectX: Version 11",
+                "OS: 64-bit Windows, macOS and Linux systems",
+                "Storage: 512MB" });
     }
     private static void updateCarousel(String[] array) {
         gameCarousel.getChildren().clear();
@@ -82,6 +113,38 @@ public class SceneChanger {
                 "-fx-background-position: top center;" +
                 "-fx-background-repeat: no-repeat;");
     }
+    private static void setRatingDesc(String[] array) {
+        ratingDesc.getChildren().clear();
+        for (int i = 0; i < array.length; i++) {
+            Text text = new Text();
+            text.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+            text.setFill(Color.web("#e7e5e4"));
+            text.setText(array[i]);
+            ratingDesc.getChildren().add(text);
+        }
+    }
+    private static void setSystemRequirements(String[] array) {
+        systemRequirements.getChildren().clear();
+        for (int i = 0; i < array.length; i++) {
+            Text text = new Text();
+            text.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+            text.setFill(Color.web("#e7e5e4"));
+            text.setText("• "+array[i]);
+            systemRequirements.getChildren().add(text);
+        }
+    }
+    private static void toggleSystemRequirements(SplitPane splitPane) {
+        Timeline timeline = new Timeline();
+        KeyValue kv;
+        if (splitPane.getDividerPositions()[0] > 0.9) {
+            kv = new KeyValue(splitPane.getDividers().get(0).positionProperty(), 0);
+        } else {
+            kv = new KeyValue(splitPane.getDividers().get(0).positionProperty(), 1);
+        }
+        KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
     private static void changeGame(String name) {
         switch (name) {
             case "StrandedAway":
@@ -91,6 +154,11 @@ public class SceneChanger {
                 DogeBTN.getStyleClass().remove("dogeIconSelected");
                 gameTitle.setStyle("-fx-background-image: url('images/gameTitles/StrandedAwayTitle.png');");
                 gameCover.setStyle("-fx-background-image: url('images/gameCovers/StrandedAwayCover.png');");
+                aboutGame.setText("Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. " +
+                        "You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion.");
+                ratingIMG.getStyleClass().clear();
+                ratingIMG.getStyleClass().add("ratingT");
+                setRatingDesc(new String[] {"Fantasy Violence", "Animated Blood", "Use of Alcohol and Tobacco"});
                 break;
             case "Doge":
                 System.out.println(name);
@@ -99,6 +167,12 @@ public class SceneChanger {
                 StrandedAwayBTN.getStyleClass().remove("strandedAwayIconSelected");
                 gameTitle.setStyle("-fx-background-image: url('images/gameTitles/DogeTitle.png');");
                 gameCover.setStyle("-fx-background-image: url('images/gameCovers/DogeCover.png');");
+                aboutGame.setText("Doge game is a small free-to-play 2.5D platform jumper about a lost doge who tries to find his way " +
+                        "home. He is roaming across the streets, crossing roads, jumping cars and running away from nasty dog catchers! " +
+                        "Play now and help doge find his way home!");
+                ratingIMG.getStyleClass().clear();
+                ratingIMG.getStyleClass().add("ratingE");
+                setRatingDesc(new String[] {"Comic Mischief", "Mild Lyrics"});
                 break;
         }
     }
