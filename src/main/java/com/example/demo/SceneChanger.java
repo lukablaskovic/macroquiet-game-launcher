@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -12,8 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -36,7 +37,8 @@ public class SceneChanger {
     public static Text aboutGame;
     public static Pane ratingIMG;
     public static FlowPane ratingDesc;
-    public static void setup(Scene scene) {
+    public static Button loginBTN;
+    public static void setup(Scene scene, Stage stage) {
         System.out.println(scene);
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
         watchTrailer = (Button)scene.lookup("#watchTrailer");
@@ -52,11 +54,19 @@ public class SceneChanger {
         ratingIMG = (Pane)scene.lookup("#ratingIMG");
         System.out.println(ratingIMG);
         ratingDesc = (FlowPane)scene.lookup("#ratingDesc");
+        loginBTN = (Button)scene.lookup("#loginBTN");
 
         enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
         StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
         DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
         systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
+        loginBTN.setOnAction(event -> {
+            try {
+                switchToScene(stage, "logIn-view");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         toggleSystemRequirements(systemRequirementsSplitPane);
 
         updateCarousel(new String[]{"https://picsum.photos/200/300", "https://picsum.photos/200/300", "https://picsum.photos/200/300"});
@@ -175,5 +185,12 @@ public class SceneChanger {
                 setRatingDesc(new String[] {"Comic Mischief", "Mild Lyrics"});
                 break;
         }
+    }
+    public static void switchToScene(Stage stage, String name) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(name+".fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+        LogInChanger.setup(scene, stage);
     }
 }

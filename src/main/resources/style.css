@@ -1,16 +1,30 @@
-.appFont {
-    font-family: 'Inter', sans-serif;
-    font-family: 'Poppins', sans-serif;
+@font-face {
+    src: url("Poppins-Medium.ttf"),
+}
+* {
+   -fx-font-family: 'Poppins Medium';
 }
 
 .menuButton{
     -fx-background-color:  transparent;
     -fx-background-radius: 50px;
     -fx-padding: 4px 8px 4px 8px;
-
+    -fx-font-size: 24px;
 }
 .menuButton:hover{
     -fx-background-color:  #242324;
+    -fx-font-size: 24px;
+}
+
+.menuButton2{
+    -fx-background-color:  transparent;
+    -fx-background-radius: 50px;
+    -fx-padding: 4px 8px 4px 8px;
+    -fx-font-size: 16px;
+}
+.menuButton2:hover{
+    -fx-background-color:  #242324;
+    -fx-font-size: 16px;
 }
 
 .strandedAwayIcon {

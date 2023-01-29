@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="840.0" minWidth="1400.0" style="-fx-background-color: #0f1119;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox style="-fx-background-color: #111011;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/macroquiet_logo.png" />
+               </image>
+            </ImageView>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Pane prefWidth="2.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Button id="loginBTN" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="menuButton2" stylesheets="@../../../style.css" text="BACK" textFill="#e7e5e4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/left.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="16.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo_icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label graphicTextGap="0.0" styleClass="loginTitle" stylesheets="@../../../loginStyle.css" text="Log in to your" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="-12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label graphicTextGap="0.0" styleClass="loginTitle" stylesheets="@../../../loginStyle.css" text="MacroQuiet" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="-12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label graphicTextGap="0.0" styleClass="loginTitle" stylesheets="@../../../loginStyle.css" text="Account" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="-12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField maxWidth="400.0" promptText="E-mail" styleClass="textField" stylesheets="@../../../loginStyle.css" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets top="16.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField maxWidth="400.0" promptText="Password" styleClass="textField" stylesheets="@../../../loginStyle.css">
+                     <VBox.margin>
+                        <Insets top="16.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Button id="loginBTN" maxWidth="400.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="loginButton" stylesheets="@../../../loginStyle.css" text="LOG IN" textFill="#e7e5e4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox alignment="CENTER" maxWidth="400.0" spacing="4.0">
+                     <children>
+                        <Label styleClass="loginTitle" stylesheets="@../../../loginStyle.css" text="New to MacroQuiet?" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label id="register" stylesheets="@../../../loginStyle.css" text="Create an account here" textFill="#ea4e46">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="loginTitle" />
+                              <String fx:value="underline" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

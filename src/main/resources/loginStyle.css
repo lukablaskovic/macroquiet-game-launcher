@@ -1,0 +1,41 @@
+@font-face {
+    src: url("Poppins-Medium.ttf"),
+}
+@font-face {
+    src: url("Poppins-Black.ttf"),
+}
+.loginTitle {
+}
+
+.textField {
+    -fx-background-color:  transparent;
+    -fx-font-family: 'Poppins Medium';
+    -fx-prompt-text-fill: gray;
+    -fx-text-fill: #e7e5e4;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-style: solid;
+    -fx-border-radius: 2px;
+}
+.textField:focused {
+     -fx-border-color: #EA4E46;
+     -fx-border-width: 0 0 2px 0;
+     -fx-border-style: solid;
+     -fx-border-radius: 2px;
+ }
+
+.loginButton{
+    -fx-font-family: 'Poppins Black';
+    -fx-background-color:  #272727;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px 8px 4px 8px;
+    -fx-font-size: 14px;
+}
+.loginButton:hover{
+    -fx-font-family: 'Poppins Black';
+    -fx-background-color:  #444444;
+    -fx-font-size: 14px;
+}
+.underline:hover {
+    -fx-underline: true;
+}

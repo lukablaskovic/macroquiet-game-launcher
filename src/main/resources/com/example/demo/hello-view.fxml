@@ -35,10 +35,10 @@
             <Pane prefWidth="2.0" style="-fx-background-color: #e7e5e4; -fx-background-radius: 100%;" />
             <HBox alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" stylesheets="@../../../style.css" text="LOG IN" textFill="#e7e5e4">
+                  <Button id="loginBTN" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" stylesheets="@../../../style.css" text="LOG IN" textFill="#e7e5e4">
                      <styleClass>
                         <String fx:value="appFont" />
-                        <String fx:value="menuButton" />
+                        <String fx:value="menuButton2" />
                      </styleClass>
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -168,7 +168,7 @@
                                                             <Insets bottom="8.0" top="16.0" />
                                                          </VBox.margin>
                                                       </Separator>
-                                                      <Button id="systemRequirementsBTN" graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton" text="MINIMUM SYSTEM REQUIREMENTS" textFill="#e7e5e4">
+                                                      <Button id="systemRequirementsBTN" graphicTextGap="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menuButton2" text="MINIMUM SYSTEM REQUIREMENTS" textFill="#e7e5e4">
                                                          <graphic>
                                                             <Pane minHeight="25.0" prefWidth="25.0" styleClass="system" stylesheets="@../../../style.css" />
                                                          </graphic>
