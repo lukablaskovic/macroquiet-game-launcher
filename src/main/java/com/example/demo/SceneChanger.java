@@ -39,6 +39,8 @@ public class SceneChanger {
     public static Pane ratingIMG;
     public static FlowPane ratingDesc;
     public static Button loginBTN;
+
+    public static ArrayList<String> dogeCarouselImages = new ArrayList<>();
     public static void setup(Scene scene, Stage stage) {
         System.out.println(scene);
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
@@ -82,6 +84,18 @@ public class SceneChanger {
                 "DirectX: Version 11",
                 "OS: 64-bit Windows, macOS and Linux systems",
                 "Storage: 512MB" });
+        if (dogeCarouselImages.size() == 0) {
+            dogeCarouselImages = new ArrayList<>();
+            dogeCarouselImages.add("https://i.imgur.com/moEPV2p.png");
+            dogeCarouselImages.add("https://i.imgur.com/aMFAuhI.png");
+            dogeCarouselImages.add("https://i.imgur.com/QOce60G.png");
+            dogeCarouselImages.add("https://i.imgur.com/WuPSo9r.png");
+            dogeCarouselImages.add("https://i.imgur.com/dPvji1j.png");
+            dogeCarouselImages.add("https://i.imgur.com/0itNd3z.png");
+            dogeCarouselImages.add("https://i.imgur.com/P5fXLlQ.png");
+            dogeCarouselImages.add("https://i.imgur.com/ySVRuUT.png");
+            dogeCarouselImages.add("https://i.imgur.com/nWlSUNs.png");
+        }
     }
     private static void updateCarousel(ArrayList<String> array) {
         gameCarousel.getChildren().clear();
@@ -170,6 +184,7 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().clear();
                 ratingIMG.getStyleClass().add("ratingT");
                 setRatingDesc(new String[] {"Fantasy Violence", "Animated Blood", "Use of Alcohol and Tobacco"});
+                updateCarousel(MainApplication.carouselURLs);
                 break;
             case "Doge":
                 System.out.println(name);
@@ -184,6 +199,7 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().clear();
                 ratingIMG.getStyleClass().add("ratingE");
                 setRatingDesc(new String[] {"Comic Mischief", "Mild Lyrics"});
+                updateCarousel(dogeCarouselImages);
                 break;
         }
     }
