@@ -227,7 +227,7 @@
                                                 </HBox>
                                                 <ScrollPane stylesheets="@../../../style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
                                                    <content>
-                                                      <HBox>
+                                                      <HBox id="gameCarousel">
                                                          <children>
                                                             <ImageView fitHeight="200.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -289,7 +289,7 @@
                                                       <Insets bottom="8.0" top="8.0" />
                                                    </VBox.margin>
                                                 </Separator>
-                                                <Label text="ABOUT" textFill="#e7e5e4">
+                                                <Label id="about" text="ABOUT" textFill="#e7e5e4">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -297,7 +297,7 @@
                                                       <Insets left="16.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Text fill="#e7e5e4" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." wrappingWidth="800.0">
+                                                <Text fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
