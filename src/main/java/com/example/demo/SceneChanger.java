@@ -22,6 +22,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class SceneChanger {
     public static HBox gameCarousel;
@@ -69,7 +70,7 @@ public class SceneChanger {
         });
         toggleSystemRequirements(systemRequirementsSplitPane);
 
-        updateCarousel(new String[]{"https://picsum.photos/200/300", "https://picsum.photos/200/300", "https://picsum.photos/200/300"});
+        updateCarousel(MainApplication.carouselURLs);
         updateTrailer("https://youtu.be/FB92RX_obXA");
         setSystemRequirements(new String[] {
                 "4 core CPU",
@@ -82,10 +83,10 @@ public class SceneChanger {
                 "OS: 64-bit Windows, macOS and Linux systems",
                 "Storage: 512MB" });
     }
-    private static void updateCarousel(String[] array) {
+    private static void updateCarousel(ArrayList<String> array) {
         gameCarousel.getChildren().clear();
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.size(); i++) {
             ImageView imageView = new ImageView();
 
             imageView.setPreserveRatio(true);
@@ -98,9 +99,9 @@ public class SceneChanger {
             imageView.setOnMouseExited(event -> imageView.setOpacity(0.75));
 
             int finalI = i;
-            imageView.setOnMouseClicked(event -> zoomImage(String.valueOf(array[finalI])));
+            imageView.setOnMouseClicked(event -> zoomImage(String.valueOf(array.get(finalI))));
 
-            imageView.setImage(new Image(array[i]));
+            imageView.setImage(new Image(array.get(i)));
             gameCarousel.getChildren().add(imageView);
         }
     }

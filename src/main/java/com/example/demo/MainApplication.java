@@ -10,7 +10,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class MainApplication extends Application {
+    public static ArrayList<String> carouselURLs;
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
@@ -26,8 +28,9 @@ public class MainApplication extends Application {
         taskThread.join();
 
         //URLs are saved as Array of strings in carouselURLs
-        ArrayList<String> carouselURLs = task.getResult();
+        carouselURLs = task.getResult();
         System.out.println(carouselURLs);
+        SceneChanger.setup(scene, stage);
     }
     public static void main(String[] args) {
         launch();
