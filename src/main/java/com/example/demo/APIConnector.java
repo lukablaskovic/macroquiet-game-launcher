@@ -1,12 +1,10 @@
 package com.example.demo;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -58,5 +56,63 @@ public class APIConnector {
         JSONArray result = new JSONArray(responseContent.toString());
         return result;
     }
+    public JSONObject post(String endpoint, JSONObject userCredentials){
+        try{
+
+            URL url = new URL(endpoint);
+            connection = (HttpURLConnection) url.openConnection();
+
+            //Request setup
+
+            connection.setRequestMethod("POST");
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
+            byte[] postBytes = userCredentials.toString().getBytes("UTF-8");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", String.valueOf(postBytes.length));
+            //connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            connection.getOutputStream().write(postBytes);
+
+            /*
+            try(OutputStream os = connection.getOutputStream()) {
+                byte[] input = userCredentials.toString().getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+            */
+
+
+            int status = connection.getResponseCode();
+
+            //If connection is unsuccessful.
+            if (status == 404 || status == 401) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+            //If connection is successful
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            connection.disconnect();
+        }
+        JSONObject result = new JSONObject(responseContent.toString());
+        return result;
+    }
+
 
 }

@@ -9,10 +9,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 
 public class MainApplication extends Application {
     public static ArrayList<String> carouselURLs;
+    public static JSONObject receivedCredentials;
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
@@ -21,44 +22,36 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        Task task = new Task("https://macroquiet.herokuapp.com/admin/data/carouselPictures");
-        Thread taskThread = new Thread(task);
-        taskThread.start();
-
-        taskThread.join();
-
-        //URLs are saved as Array of strings in carouselURLs
-        carouselURLs = task.getResult();
-        System.out.println(carouselURLs);
+        LoadImagesTask loadImagesTask = new LoadImagesTask("https://macroquiet.herokuapp.com/admin/data/carouselPictures");
+        //Start LoadImages task
+        Thread loadImagesThread = new Thread(loadImagesTask);
+        loadImagesThread.start();
+        loadImagesThread.join();
+        carouselURLs = loadImagesTask.getResult();
+        //Change images in scene
         SceneChanger.setup(scene, stage);
+
+        String userEmail = "lukablaskovic2000@gmail.com";
+        String userPassword = "123";
+
+        //Spremanje u JSON
+        JSONObject userCredentials = new JSONObject();
+        userCredentials.put("email", userEmail);
+        userCredentials.put("password", userPassword);
+        System.out.println(userCredentials);
+
+
+        LoginUserTask loginUserTask = new LoginUserTask("https://macroquiet.herokuapp.com/auth/unity", userCredentials);
+        Thread loginUserThread = new Thread(loginUserTask);
+        loginUserThread.start();
+        loginUserThread.join();
+        //Stores user credentials
+        receivedCredentials = loginUserTask.getResult();
+
     }
     public static void main(String[] args) {
         launch();
     }
-    class Task implements Runnable {
-        private String endpoint;
-        public Task(String endpoint){
-            this.endpoint = endpoint;
-        }
-        ArrayList<String> result = new ArrayList<>();
-        //Fetch carousel images thread
-
-        public void run() {
-            try {
-                APIConnector connector = new APIConnector();
-                JSONArray data = connector.get(endpoint);
-
-                for (int i = 0; i < data.length(); i++) {
-                    JSONObject object = data.getJSONObject(i);
-                    result.add(object.getString("url"));
-                }
-            }catch(Exception e) {
-                System.out.println("Error" + e.getMessage());
-            }
-        }
-        public ArrayList<String> getResult(){return result;}
-    }
-
 
 }
 
