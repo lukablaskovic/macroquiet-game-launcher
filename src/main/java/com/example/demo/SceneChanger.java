@@ -381,7 +381,7 @@ public class SceneChanger {
     }
     public static void switchToScene(Stage stage, String name) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(name+".fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(), stage.getWidth()-16, stage.getHeight()-39);
         stage.setScene(scene);
         stage.show();
         LogInChanger.setup(scene, stage);

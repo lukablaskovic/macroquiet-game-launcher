@@ -50,7 +50,7 @@ public class LogInChanger {
     }
     public static void switchToScene(Stage stage, String name) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(name+".fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(), stage.getWidth()-16, stage.getHeight()-39);
         stage.setScene(scene);
         stage.show();
         SceneChanger.setup(scene, stage);
