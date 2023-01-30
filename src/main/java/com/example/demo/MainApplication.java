@@ -9,6 +9,7 @@ import org.json.JSONArray;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainApplication extends Application {
@@ -18,9 +19,7 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1400, 840);
 
-
-        //Image image = new Image("images/appicon.png");
-        //stage.getIcons().add(image);
+        stage.getIcons().add(new Image("https://i.imgur.com/ii0ZxU4.png"));
 
         stage.setTitle("MacroQuiet Launcher");
         stage.setScene(scene);

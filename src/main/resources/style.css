@@ -178,3 +178,194 @@
 .split-pane .split-pane-divider {
     -fx-opacity: 0;
 }
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+.images-gameCovers-StrandedAway {
+    -fx-background-image: url("images/gameCovers/StrandedAwayCover.png");
+}
+.images-gameCovers-Doge {
+    -fx-background-image: url("images/gameCovers/DogeCover.png");
+}
+.images-gameTitles-StrandedAway {
+    -fx-background-image: url("images/gameTitles/StrandedAwayTitle.png");
+}
+.images-gameTitles-Doge {
+    -fx-background-image: url("images/gameTitles/DogeTitle.png");
+}
+
+.trophie-Abyss {
+    -fx-background-image: url("images/trophies/Abyss.png");
+}
+.trophie-Abyss:hover {
+    -fx-background-image: url("images/trophies/Abyss_outline.png");
+}
+
+.trophie-BabySteps {
+    -fx-background-image: url("images/trophies/BabySteps.png");
+}
+.trophie-BabySteps:hover {
+    -fx-background-image: url("images/trophies/BabySteps_outline.png");
+}
+
+.trophie-Beginning {
+    -fx-background-image: url("images/trophies/Beginning.png");
+}
+.trophie-Beginning:hover {
+    -fx-background-image: url("images/trophies/Beginning_outline.png");
+}
+
+.trophie-Bolt {
+    -fx-background-image: url("images/trophies/Bolt.png");
+}
+.trophie-Bolt:hover {
+    -fx-background-image: url("images/trophies/Bolt_outline.png");
+}
+
+.trophie-Celestial {
+    -fx-background-image: url("images/trophies/Celestial.png");
+}
+.trophie-Celestial:hover {
+    -fx-background-image: url("images/trophies/Celestial_outline.png");
+}
+
+.trophie-ConfusingEscape {
+    -fx-background-image: url("images/trophies/ConfusingEscape.png");
+}
+.trophie-ConfusingEscape:hover {
+    -fx-background-image: url("images/trophies/ConfusingEscape_outline.png");
+}
+
+.trophie-Dedication {
+    -fx-background-image: url("images/trophies/Dedication.png");
+}
+.trophie-Dedication:hover {
+    -fx-background-image: url("images/trophies/Dedication_outline.png");
+}
+
+.trophie-Doom {
+    -fx-background-image: url("images/trophies/Doom.png");
+}
+.trophie-Doom:hover {
+    -fx-background-image: url("images/trophies/Doom_outline.png");
+}
+
+.trophie-DownwardSpiral {
+    -fx-background-image: url("images/trophies/DownwardSpiral.png");
+}
+.trophie-DownwardSpiral:hover {
+    -fx-background-image: url("images/trophies/DownwardSpiral_outline.png");
+}
+
+.trophie-Exploration {
+    -fx-background-image: url("images/trophies/Exploration.png");
+}
+.trophie-Exploration:hover {
+    -fx-background-image: url("images/trophies/Exploration_outline.png");
+}
+
+.trophie-Exploration {
+    -fx-background-image: url("images/trophies/Exploration.png");
+}
+.trophie-Exploration:hover {
+    -fx-background-image: url("images/trophies/Exploration_outline.png");
+}
+
+.trophie-Halfwaythere {
+    -fx-background-image: url("images/trophies/Halfwaythere.png");
+}
+.trophie-Halfwaythere:hover {
+    -fx-background-image: url("images/trophies/Halfwaythere_outline.png");
+}
+
+.trophie-Hastalavista {
+    -fx-background-image: url("images/trophies/Hastalavista.png");
+}
+.trophie-Hastalavista:hover {
+    -fx-background-image: url("images/trophies/Hastalavista_outline.png");
+}
+
+.trophie-hidden_trophy {
+    -fx-background-image: url("images/trophies/hidden_trophy.png");
+}
+.trophie-hidden_trophy:hover {
+    -fx-background-image: url("images/trophies/hidden_trophy_outline.png");
+}
+
+.trophie-Higher {
+    -fx-background-image: url("images/trophies/Higher.png");
+}
+.trophie-Higher:hover {
+    -fx-background-image: url("images/trophies/Higher_outline.png");
+}
+
+.trophie-Home {
+    -fx-background-image: url("images/trophies/Home.png");
+}
+.trophie-Home:hover {
+    -fx-background-image: url("images/trophies/Home_outline.png");
+}
+
+.trophie-KingofJumping {
+    -fx-background-image: url("images/trophies/KingofJumping.png");
+}
+.trophie-KingofJumping:hover {
+    -fx-background-image: url("images/trophies/KingofJumping_outline.png");
+}
+
+.trophie-Light {
+    -fx-background-image: url("images/trophies/Light.png");
+}
+.trophie-Light:hover {
+    -fx-background-image: url("images/trophies/Light_outline.png");
+}
+
+.trophie-Masterclock {
+    -fx-background-image: url("images/trophies/Masterclock.png");
+}
+.trophie-Masterclock:hover {
+    -fx-background-image: url("images/trophies/Masterclock_outline.png");
+}
+
+.trophie-Monopoly {
+    -fx-background-image: url("images/trophies/Monopoly.png");
+}
+.trophie-Monopoly:hover {
+    -fx-background-image: url("images/trophies/Monopoly_outline.png");
+}
+
+.trophie-Neverending {
+    -fx-background-image: url("images/trophies/Neverending.png");
+}
+.trophie-Neverending:hover {
+    -fx-background-image: url("images/trophies/Neverending_outline.png");
+}
+
+.trophie-NotEnoughBoxes {
+    -fx-background-image: url("images/trophies/NotEnoughBoxes.png");
+}
+.trophie-NotEnoughBoxes:hover {
+    -fx-background-image: url("images/trophies/NotEnoughBoxes_outline.png");
+}
+
+.trophie-OHKO {
+    -fx-background-image: url("images/trophies/OHKO.png");
+}
+.trophie-OHKO:hover {
+    -fx-background-image: url("images/trophies/OHKO_outline.png");
+}
+
+.trophie-Papersplease {
+    -fx-background-image: url("images/trophies/Papersplease.png");
+}
+.trophie-Papersplease:hover {
+    -fx-background-image: url("images/trophies/Papersplease_outline.png");
+}
+
+.trophie-Unoreverse {
+    -fx-background-image: url("images/trophies/Unoreverse.png");
+}
+.trophie-Unoreverse:hover {
+    -fx-background-image: url("images/trophies/Unoreverse_outline.png");
+}

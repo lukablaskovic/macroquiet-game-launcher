@@ -143,8 +143,8 @@ public class SceneChanger {
             VBox trophie = new VBox();
             trophie.setAlignment(Pos.TOP_CENTER);
             trophie.setFillWidth(true);
-            trophie.prefHeight(Region.USE_COMPUTED_SIZE);
-            trophie.prefWidth(Region.USE_COMPUTED_SIZE);
+            trophie.setPrefWidth(134);
+            trophie.setMaxWidth(134);
 
             TextField trophieName = new TextField();
             trophieName.setText(extractedTrophieName);
@@ -155,14 +155,14 @@ public class SceneChanger {
             trophieName.getStyleClass().add("trophieLabel");
             trophieName.setOpacity(0);
 
-            ImageView trophieIMG = new ImageView();
-            trophieIMG.setFitHeight(134);
-            trophieIMG.setFitWidth(134);
+            Pane trophieIMG = new Pane();
+            trophieIMG.setPrefSize(134, 134);
+            trophieIMG.setMaxWidth(134);
             trophieIMG.setCursor(Cursor.HAND);
-            trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+".png"));
+            String temp = "trophie-"+extractedTrophieImage.replaceAll(" ", "").replaceAll(",", "");
+            trophieIMG.getStyleClass().add(temp);
 
             trophieIMG.setOnMouseEntered(event -> {
-                trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+"_outline.png"));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
                 fadeTransition.setFromValue(trophieName.getOpacity());
                 fadeTransition.setToValue(1);
@@ -170,7 +170,6 @@ public class SceneChanger {
             });
 
             trophieIMG.setOnMouseExited(event -> {
-                trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+".png"));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
                 fadeTransition.setFromValue(trophieName.getOpacity());
                 fadeTransition.setToValue(0);
@@ -324,8 +323,10 @@ public class SceneChanger {
                 StrandedAwayBTN.getStyleClass().add("strandedAwayIconSelected");
                 DogeBTN.getStyleClass().remove("dogeIconSelected");
                 DogeBTN.getStyleClass().remove("dogeIconSelected");
-                gameTitle.setStyle("-fx-background-image: url('images/gameTitles/StrandedAwayTitle.png');");
-                gameCover.setStyle("-fx-background-image: url('images/gameCovers/StrandedAwayCover.png');");
+                gameCover.getStyleClass().clear();
+                gameTitle.getStyleClass().clear();
+                gameCover.getStyleClass().add("images-gameCovers-StrandedAway");
+                gameTitle.getStyleClass().add("images-gameTitles-StrandedAway");
                 aboutGame.setText("Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. " +
                         "You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion.");
                 ratingIMG.getStyleClass().clear();
@@ -352,8 +353,10 @@ public class SceneChanger {
                 DogeBTN.getStyleClass().add("dogeIconSelected");
                 StrandedAwayBTN.getStyleClass().remove("strandedAwayIconSelected");
                 StrandedAwayBTN.getStyleClass().remove("strandedAwayIconSelected");
-                gameTitle.setStyle("-fx-background-image: url('images/gameTitles/DogeTitle.png');");
-                gameCover.setStyle("-fx-background-image: url('images/gameCovers/DogeCover.png');");
+                gameCover.getStyleClass().clear();
+                gameTitle.getStyleClass().clear();
+                gameCover.getStyleClass().add("images-gameCovers-Doge");
+                gameTitle.getStyleClass().add("images-gameTitles-Doge");
                 aboutGame.setText("Doge game is a small free-to-play 2.5D platform jumper about a lost doge who tries to find his way " +
                         "home. He is roaming across the streets, crossing roads, jumping cars and running away from nasty dog catchers! " +
                         "Play now and help doge find his way home!");
