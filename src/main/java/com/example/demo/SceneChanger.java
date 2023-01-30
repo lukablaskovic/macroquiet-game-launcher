@@ -1,15 +1,18 @@
 package com.example.demo;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -44,10 +47,11 @@ public class SceneChanger {
     public static Button loginBTN;
     public static Label username;
     public static Pane playIMG;
-
+    public static FlowPane trophies;
     public static ArrayList<String> dogeCarouselImages = new ArrayList<>();
     public static void setup(Scene scene, Stage stage) {
         System.out.println(scene);
+        trophies = (FlowPane)scene.lookup("#trophies");
         play = (Button)scene.lookup("#play");
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
         watchTrailer = (Button)scene.lookup("#watchTrailer");
@@ -87,6 +91,7 @@ public class SceneChanger {
         }
         changeGame("StrandedAway");
         toggleSystemRequirements(systemRequirementsSplitPane);
+        loadTrophiees();
 
         if (dogeCarouselImages.size() == 0) {
             dogeCarouselImages = new ArrayList<>();
@@ -99,6 +104,52 @@ public class SceneChanger {
             dogeCarouselImages.add("https://i.imgur.com/P5fXLlQ.png");
             dogeCarouselImages.add("https://i.imgur.com/ySVRuUT.png");
             dogeCarouselImages.add("https://i.imgur.com/nWlSUNs.png");
+        }
+    }
+    private static void loadTrophiees() {
+        trophies.getChildren().clear();
+        for (int i = 0; i < 20; i++) {
+            VBox trophie = new VBox();
+            trophie.setAlignment(Pos.TOP_CENTER);
+            trophie.setFillWidth(true);
+            trophie.prefHeight(Region.USE_COMPUTED_SIZE);
+            trophie.prefWidth(Region.USE_COMPUTED_SIZE);
+
+            TextField trophieName = new TextField();
+            trophieName.setText("*HIDDEN*");
+            trophieName.setAlignment(Pos.CENTER);
+            trophieName.prefHeight(Region.USE_COMPUTED_SIZE);
+            trophieName.prefWidth(Region.USE_COMPUTED_SIZE);
+            trophieName.getStyleClass().add("px14");
+            trophieName.getStyleClass().add("trophieLabel");
+            trophieName.setOpacity(0);
+
+            ImageView trophieIMG = new ImageView();
+            trophieIMG.setFitHeight(128);
+            trophieIMG.setFitWidth(128);
+            trophieIMG.setCursor(Cursor.HAND);
+            trophieIMG.setImage(new Image("images/trophies/hidden_trophy.png"));
+
+            trophieIMG.setOnMouseEntered(event -> {
+                trophieIMG.setImage(new Image("images/trophies/hidden_trophy_outline.png"));
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
+                fadeTransition.setFromValue(trophieName.getOpacity());
+                fadeTransition.setToValue(1);
+                fadeTransition.play();
+            });
+
+            trophieIMG.setOnMouseExited(event -> {
+                trophieIMG.setImage(new Image("images/trophies/hidden_trophy.png"));
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
+                fadeTransition.setFromValue(trophieName.getOpacity());
+                fadeTransition.setToValue(0);
+                fadeTransition.play();
+            });
+
+            trophie.getChildren().add(trophieName);
+            trophie.getChildren().add(trophieIMG);
+
+            trophies.getChildren().add(trophie);
         }
     }
     private static void checkGame(String gameName, String gameLink) {

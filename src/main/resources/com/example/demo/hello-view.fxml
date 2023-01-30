@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="840.0" minWidth="1400.0" style="-fx-background-color: #0f1119;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="1080.0" minWidth="1920.0" style="-fx-background-color: #0f1119;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox style="-fx-background-color: #111011;">
          <children>
@@ -124,9 +125,9 @@
                      <children>
                         <HBox styleClass="fadeCover" stylesheets="@../../../style.css">
                            <children>
-                              <ScrollPane nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
+                              <ScrollPane fitToWidth="true" nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
                                  <content>
-                                    <GridPane>
+                                    <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="NEVER" minWidth="402.0" />
                                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
@@ -135,6 +136,8 @@
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="355.0" valignment="CENTER" />
+                                          <RowConstraints minHeight="0.0" valignment="TOP" vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="0.0" valignment="TOP" vgrow="ALWAYS" />
                                           <RowConstraints minHeight="0.0" valignment="TOP" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
@@ -147,33 +150,36 @@
                                              <children>
                                                 <VBox HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <FlowPane hgap="16.0" prefWidth="307.0">
+                                                      <HBox fillHeight="false">
                                                          <children>
-                                                            <Pane id="ratingIMG" minHeight="150.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
-                                                            <FlowPane id="ratingDesc" alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="100.0" prefWrapLength="300.0" vgap="8.0">
+                                                            <Pane id="ratingIMG" prefHeight="151.0" prefWidth="107.0" styleClass="ratingT" stylesheets="@../../../style.css" />
+                                                            <FlowPane id="ratingDesc" alignment="CENTER_LEFT" orientation="VERTICAL" prefHeight="151.0" prefWrapLength="300.0" vgap="8.0">
                                                                <children>
-                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Fantasy Violence" textFill="#e7e5e4">
+                                                                  <Label styleClass="px14" stylesheets="@../../../style.css" text="Fantasy Violence" textFill="#e7e5e4">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Animated Blood" textFill="#e7e5e4">
+                                                                  <Label styleClass="px14" stylesheets="@../../../style.css" text="Animated Blood" textFill="#e7e5e4">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label styleClass="appFont" stylesheets="@../../../style.css" text="Use of Alcohol and Tobacco" textFill="#e7e5e4">
+                                                                  <Label styleClass="px14" stylesheets="@../../../style.css" text="Use of Alcohol and Tobacco" textFill="#e7e5e4">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
                                                                </children>
-                                                               <FlowPane.margin>
+                                                               <opaqueInsets>
                                                                   <Insets />
-                                                               </FlowPane.margin>
+                                                               </opaqueInsets>
+                                                               <padding>
+                                                                  <Insets left="8.0" />
+                                                               </padding>
                                                             </FlowPane>
                                                          </children>
-                                                      </FlowPane>
+                                                      </HBox>
                                                       <Separator>
                                                          <VBox.margin>
                                                             <Insets bottom="8.0" top="16.0" />
@@ -313,7 +319,7 @@
                                                             <Insets top="16.0" />
                                                          </padding>
                                                       </ScrollPane>
-                                                      <Label text="ABOUT" textFill="#e7e5e4">
+                                                      <Label styleClass="px18" text="ABOUT" textFill="#e7e5e4">
                                                          <font>
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
@@ -321,18 +327,67 @@
                                                             <Insets left="16.0" top="8.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Text id="aboutGame" fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
-                                                         <font>
-                                                            <Font name="System Bold" size="14.0" />
-                                                         </font>
+                                                      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" minHeight="200.0" vbarPolicy="NEVER">
+                                                         <padding>
+                                                            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                                         </padding>
+                                                         <content>
+                                                            <Text id="aboutGame" fill="#e7e5e4" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="px14" text="Stranded Away is a 2D pixel art singleplayer: platform-jumper, puzzle and action game. You are playing as a mysterious space traveller who's looking for long gone inhabitants of planet Athion." textAlignment="JUSTIFY" wrappingWidth="1000.0">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </Text>
+                                                         </content>
                                                          <VBox.margin>
-                                                            <Insets left="16.0" top="8.0" />
+                                                            <Insets />
                                                          </VBox.margin>
-                                                      </Text>
+                                                      </ScrollPane>
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </HBox>
+                                          <VBox styleClass="rating" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label styleClass="px36" text="Trophies" textFill="#e7e5e4">
+                                                   <VBox.margin>
+                                                      <Insets left="32.0" top="32.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="36.0" />
+                                                   </font>
+                                                </Label>
+                                                <Separator prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="16.0" left="32.0" right="32.0" top="16.0" />
+                                                   </VBox.margin>
+                                                </Separator>
+                                                <FlowPane id="trophies" hgap="32.0" vgap="32.0">
+                                                   <padding>
+                                                      <Insets bottom="32.0" left="32.0" right="32.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <VBox alignment="TOP_CENTER">
+                                                         <children>
+                                                            <TextField alignment="CENTER" editable="false" text="Trophie Name  Trophie Name  Trophie Name ">
+                                                               <styleClass>
+                                                                  <String fx:value="px14" />
+                                                                  <String fx:value="trophieLabel" />
+                                                               </styleClass>
+                                                            </TextField>
+                                                            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                                                               <image>
+                                                                  <Image url="@../../../images/trophies/hidden_trophy.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </FlowPane>
+                                             </children>
+                                             <GridPane.margin>
+                                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                                             </GridPane.margin>
+                                          </VBox>
                                        </children>
                                     </GridPane>
                                  </content>
