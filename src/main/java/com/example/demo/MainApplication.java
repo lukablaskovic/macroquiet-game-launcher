@@ -19,8 +19,8 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1400, 840);
 
 
-        Image image = new Image("images/appicon.png");
-        stage.getIcons().add(image);
+        //Image image = new Image("images/appicon.png");
+        //stage.getIcons().add(image);
 
         stage.setTitle("MacroQuiet Launcher");
         stage.setScene(scene);

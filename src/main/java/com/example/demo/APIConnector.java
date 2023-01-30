@@ -4,11 +4,9 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import org.json.JSONObject;
-import org.json.JSONArray;
+
 
 public class APIConnector {
     private static HttpURLConnection connection;
