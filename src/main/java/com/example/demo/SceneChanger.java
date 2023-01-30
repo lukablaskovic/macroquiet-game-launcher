@@ -20,6 +20,7 @@ import javafx.util.Duration;
 
 import java.awt.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class SceneChanger {
     public static HBox gameCarousel;
     public static Button watchTrailer;
+    public static Button play;
     public static HBox enlargeImage;
     public static HBox StrandedAwayBTN;
     public static HBox DogeBTN;
@@ -41,16 +43,19 @@ public class SceneChanger {
     public static FlowPane ratingDesc;
     public static Button loginBTN;
     public static Label username;
+    public static Pane playIMG;
 
     public static ArrayList<String> dogeCarouselImages = new ArrayList<>();
     public static void setup(Scene scene, Stage stage) {
         System.out.println(scene);
+        play = (Button)scene.lookup("#play");
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
         watchTrailer = (Button)scene.lookup("#watchTrailer");
         enlargeImage = (HBox)scene.lookup("#enlargeImage");
         StrandedAwayBTN = (HBox)scene.lookup("#StrandedAwayBTN");
         DogeBTN = (HBox)scene.lookup("#DogeBTN");
         gameTitle = (Pane)scene.lookup("#gameTitle");
+        playIMG = (Pane)scene.lookup("#playIMG");
         gameCover = (StackPane)scene.lookup("#gameCover");
         systemRequirements = (VBox)scene.lookup("#systemRequirements");
         systemRequirementsBTN = (Button)scene.lookup("#systemRequirementsBTN");
@@ -61,6 +66,12 @@ public class SceneChanger {
         ratingDesc = (FlowPane)scene.lookup("#ratingDesc");
         loginBTN = (Button)scene.lookup("#loginBTN");
         username = (Label)scene.lookup("#username");
+
+        enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
+        StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
+        DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
+        systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
+
         if (LogInChanger.receivedCredentials != null) {
             username.setText(LogInChanger.receivedCredentials.getString("username"));
             loginBTN.setText("SIGN OUT");
@@ -74,26 +85,9 @@ public class SceneChanger {
         else {
             setLogin(stage);
         }
-
-        enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
-        StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
-        DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
-        systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
-
+        changeGame("StrandedAway");
         toggleSystemRequirements(systemRequirementsSplitPane);
 
-        updateCarousel(MainApplication.carouselURLs);
-        updateTrailer("https://youtu.be/FB92RX_obXA");
-        setSystemRequirements(new String[] {
-                "4 core CPU",
-                "4 GB RAM",
-                "Windows, macOS, Linux",
-                "Graphics: nVidia GeForce GTX 660 2GB/ AMD Radeon HD 7850 2gb",
-                "Processor: Intel Core i3-4340 / AMD FX-6300",
-                "Memory: 4 GB RAM",
-                "DirectX: Version 11",
-                "OS: 64-bit Windows, macOS and Linux systems",
-                "Storage: 512MB" });
         if (dogeCarouselImages.size() == 0) {
             dogeCarouselImages = new ArrayList<>();
             dogeCarouselImages.add("https://i.imgur.com/moEPV2p.png");
@@ -105,6 +99,36 @@ public class SceneChanger {
             dogeCarouselImages.add("https://i.imgur.com/P5fXLlQ.png");
             dogeCarouselImages.add("https://i.imgur.com/ySVRuUT.png");
             dogeCarouselImages.add("https://i.imgur.com/nWlSUNs.png");
+        }
+    }
+    private static void checkGame(String gameName, String gameLink) {
+        File file = new File("C:\\Program Files (x86)\\MacroQuiet\\"+gameName+"\\"+gameName+".exe");
+        if (file.exists()) {
+            play.setText("PLAY");
+            playIMG.getStyleClass().remove("download");
+            playIMG.getStyleClass().add("play");
+            play.setOnAction(event -> {
+                String[] cmd = {"C:\\Program Files (x86)\\MacroQuiet\\"+gameName+"\\"+gameName+".exe"};
+                try {
+                    new ProcessBuilder(cmd).start();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                System.exit(0);
+            });
+        } else {
+            play.setText("DOWNLOAD");
+            playIMG.getStyleClass().remove("play");
+            playIMG.getStyleClass().add("download");
+            play.setOnAction(event -> {
+                try {
+                    Desktop.getDesktop().browse(new URI(gameLink));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
     }
     private static void setLogin(Stage stage) {
@@ -203,7 +227,19 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().add("ratingT");
                 setRatingDesc(new String[] {"Fantasy Violence", "Animated Blood", "Use of Alcohol and Tobacco"});
                 updateCarousel(MainApplication.carouselURLs);
-                watchTrailer.setVisible(true);
+                checkGame("Stranded Away", "https://macroquiet.itch.io/stranded-away");
+                watchTrailer.setText("GAME TRAILER");
+                updateTrailer("https://youtu.be/FB92RX_obXA");
+                setSystemRequirements(new String[] {
+                        "4 core CPU",
+                        "4 GB RAM",
+                        "Windows, macOS, Linux",
+                        "Graphics: nVidia GeForce GTX 660 2GB/ AMD Radeon HD 7850 2gb",
+                        "Processor: Intel Core i3-4340 / AMD FX-6300",
+                        "Memory: 4 GB RAM",
+                        "DirectX: Version 11",
+                        "OS: 64-bit Windows, macOS and Linux systems",
+                        "Storage: 512MB" });
                 break;
             case "Doge":
                 DogeBTN.getStyleClass().add("dogeIconSelected");
@@ -218,7 +254,19 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().add("ratingE");
                 setRatingDesc(new String[] {"Comic Mischief", "Mild Lyrics"});
                 updateCarousel(dogeCarouselImages);
-                watchTrailer.setVisible(false);
+                checkGame("Doge", "https://macroquiet.itch.io/doge");
+                watchTrailer.setText("GAME OST");
+                updateTrailer("https://www.youtube.com/watch?v=kkkRJm4rJuI&list=PLKpWbF6ulKiBcRD6wzN4LdyzZnR-idZ-2");
+                setSystemRequirements(new String[] {
+                        "4 core CPU",
+                        "4 GB RAM",
+                        "Windows, macOS, Linux",
+                        "Graphics: GeForce 8600 GT / Radeon HD 2600",
+                        "Processor: Intel Core i3-4340 / AMD FX-6300",
+                        "Memory: 4 GB RAM",
+                        "DirectX: Version 11",
+                        "OS: 64-bit Windows, macOS and Linux systems",
+                        "Storage: 1GB" });
                 break;
         }
     }

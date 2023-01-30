@@ -229,9 +229,9 @@
                                                    <children>
                                                       <HBox spacing="16.0">
                                                          <children>
-                                                            <Button graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="DOWNLOAD" textFill="#e7e5e4">
+                                                            <Button id="play" graphicTextGap="8.0" mnemonicParsing="false" styleClass="menuButton" stylesheets="@../../../style.css" text="DOWNLOAD" textFill="#e7e5e4">
                                                                <graphic>
-                                                                  <Pane minHeight="25.0" prefWidth="25.0" styleClass="download" stylesheets="@../../../style.css" />
+                                                                  <Pane id="playIMG" minHeight="25.0" prefWidth="25.0" styleClass="download" stylesheets="@../../../style.css" />
                                                                </graphic>
                                                                <cursor>
                                                                   <Cursor fx:constant="HAND" />
