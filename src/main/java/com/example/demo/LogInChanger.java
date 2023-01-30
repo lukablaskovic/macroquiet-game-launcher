@@ -36,7 +36,7 @@ public class LogInChanger {
         backBTN.setOnAction(event -> {
             try {
                 switchToScene(stage, "hello-view");
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -48,7 +48,7 @@ public class LogInChanger {
             }
         });
     }
-    public static void switchToScene(Stage stage, String name) throws IOException {
+    public static void switchToScene(Stage stage, String name) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(name+".fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -74,7 +74,6 @@ public class LogInChanger {
         JSONObject userCredentials = new JSONObject();
         userCredentials.put("email", userEmail);
         userCredentials.put("password", userPassword);
-        System.out.println(userCredentials);
 
         LoginUserTask loginUserTask = new LoginUserTask("https://macroquiet.herokuapp.com/auth/unity", userCredentials);
         Thread loginUserThread = new Thread(loginUserTask);

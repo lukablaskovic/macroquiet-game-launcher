@@ -20,6 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.awt.*;
 
@@ -49,8 +51,9 @@ public class SceneChanger {
     public static Pane playIMG;
     public static FlowPane trophies;
     public static ArrayList<String> dogeCarouselImages = new ArrayList<>();
-    public static void setup(Scene scene, Stage stage) {
-        System.out.println(scene);
+    public static ArrayList<String> strandedAwayCarouselImages = new ArrayList<>();
+    public static JSONArray userTrophies;
+    public static void setup(Scene scene, Stage stage) throws InterruptedException {
         trophies = (FlowPane)scene.lookup("#trophies");
         play = (Button)scene.lookup("#play");
         gameCarousel = (HBox)scene.lookup("#gameCarousel");
@@ -66,14 +69,25 @@ public class SceneChanger {
         systemRequirementsSplitPane = (SplitPane)scene.lookup("#systemRequirementsSplitPane");
         aboutGame = (Text)scene.lookup("#aboutGame");
         ratingIMG = (Pane)scene.lookup("#ratingIMG");
-        System.out.println(ratingIMG);
         ratingDesc = (FlowPane)scene.lookup("#ratingDesc");
         loginBTN = (Button)scene.lookup("#loginBTN");
         username = (Label)scene.lookup("#username");
 
         enlargeImage.setOnMouseClicked(event -> enlargeImage.getParent().setVisible(false));
-        StrandedAwayBTN.setOnMouseClicked(event -> changeGame("StrandedAway"));
-        DogeBTN.setOnMouseClicked(event -> changeGame("Doge"));
+        StrandedAwayBTN.setOnMouseClicked(event -> {
+            try {
+                changeGame("StrandedAway");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        DogeBTN.setOnMouseClicked(event -> {
+            try {
+                changeGame("Doge");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         systemRequirementsBTN.setOnAction(event -> toggleSystemRequirements(systemRequirementsSplitPane));
 
         if (LogInChanger.receivedCredentials != null) {
@@ -84,15 +98,12 @@ public class SceneChanger {
                 username.setText("");
                 loginBTN.setText("LOG IN");
                 setLogin(stage);
+                trophies.getChildren().clear();
             });
         }
         else {
             setLogin(stage);
         }
-        changeGame("StrandedAway");
-        toggleSystemRequirements(systemRequirementsSplitPane);
-        loadTrophiees();
-
         if (dogeCarouselImages.size() == 0) {
             dogeCarouselImages = new ArrayList<>();
             dogeCarouselImages.add("https://i.imgur.com/moEPV2p.png");
@@ -105,10 +116,30 @@ public class SceneChanger {
             dogeCarouselImages.add("https://i.imgur.com/ySVRuUT.png");
             dogeCarouselImages.add("https://i.imgur.com/nWlSUNs.png");
         }
+        if (strandedAwayCarouselImages.size() == 0) {
+            strandedAwayCarouselImages = new ArrayList<>();
+            strandedAwayCarouselImages.add("https://i.imgur.com/BXNJVYL.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/HNZYFdv.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/JzMWJmA.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/iVkkdss.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/Gq1G9wf.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/gqFiuIQ.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/OCNDGy4.png");
+            strandedAwayCarouselImages.add("https://i.imgur.com/SPgkpE7.png");
+        }
+        toggleSystemRequirements(systemRequirementsSplitPane);
+        changeGame("StrandedAway");
     }
-    private static void loadTrophiees() {
+    private static void loadTrophies() {
         trophies.getChildren().clear();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < userTrophies.length(); i++) {
+
+            JSONObject object = userTrophies.getJSONObject(i);
+            String extractedSpriteName = object.getString("spriteName");
+            String extractedTrophieName = object.getString("trophieName");
+            Boolean extractedUnlocked = object.getBoolean("unlocked");
+            String extractedTrophieImage = extractedUnlocked ? extractedSpriteName : "hidden_trophy";
+
             VBox trophie = new VBox();
             trophie.setAlignment(Pos.TOP_CENTER);
             trophie.setFillWidth(true);
@@ -116,7 +147,7 @@ public class SceneChanger {
             trophie.prefWidth(Region.USE_COMPUTED_SIZE);
 
             TextField trophieName = new TextField();
-            trophieName.setText("*HIDDEN*");
+            trophieName.setText(extractedTrophieName);
             trophieName.setAlignment(Pos.CENTER);
             trophieName.prefHeight(Region.USE_COMPUTED_SIZE);
             trophieName.prefWidth(Region.USE_COMPUTED_SIZE);
@@ -125,13 +156,13 @@ public class SceneChanger {
             trophieName.setOpacity(0);
 
             ImageView trophieIMG = new ImageView();
-            trophieIMG.setFitHeight(128);
-            trophieIMG.setFitWidth(128);
+            trophieIMG.setFitHeight(134);
+            trophieIMG.setFitWidth(134);
             trophieIMG.setCursor(Cursor.HAND);
-            trophieIMG.setImage(new Image("images/trophies/hidden_trophy.png"));
+            trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+".png"));
 
             trophieIMG.setOnMouseEntered(event -> {
-                trophieIMG.setImage(new Image("images/trophies/hidden_trophy_outline.png"));
+                trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+"_outline.png"));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
                 fadeTransition.setFromValue(trophieName.getOpacity());
                 fadeTransition.setToValue(1);
@@ -139,7 +170,7 @@ public class SceneChanger {
             });
 
             trophieIMG.setOnMouseExited(event -> {
-                trophieIMG.setImage(new Image("images/trophies/hidden_trophy.png"));
+                trophieIMG.setImage(new Image("images/trophies/"+extractedTrophieImage+".png"));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.25), trophieName);
                 fadeTransition.setFromValue(trophieName.getOpacity());
                 fadeTransition.setToValue(0);
@@ -148,9 +179,32 @@ public class SceneChanger {
 
             trophie.getChildren().add(trophieName);
             trophie.getChildren().add(trophieIMG);
+            trophie.setMargin(trophieIMG, new Insets(8, 0, 0, 0));
 
             trophies.getChildren().add(trophie);
         }
+    }
+    private static void loadUserProfile(String username, String game) throws InterruptedException {
+        String URL = String.format("https://macroquiet.herokuapp.com/unity/user/profile?username=%s", username);
+        GetTask loadUserDataTask = new GetTask(URL, JSONObject.class);
+        Thread loadUserDataThread = new Thread(loadUserDataTask);
+        loadUserDataThread.start();
+        loadUserDataThread.join();
+        ArrayList<String> userData = loadUserDataTask.getResult();
+        JSONObject user = new JSONObject(userData.get(0));
+
+        JSONObject userProfile = user.getJSONObject("profile");
+        JSONArray userGames = new JSONArray(userProfile.getJSONArray("games"));
+        JSONObject userGame = new JSONObject();
+        for (int i = 0; i < userGames.length(); i++) {
+            JSONObject object = userGames.getJSONObject(i);
+            if (object.getString("name").equals(game)) {
+                userGame = object;
+                break;
+            }
+        }
+        userTrophies = new JSONArray(userGame.getJSONArray("trophies"));
+        loadTrophies();
     }
     private static void checkGame(String gameName, String gameLink) {
         File file = new File("C:\\Program Files (x86)\\MacroQuiet\\"+gameName+"\\"+gameName+".exe");
@@ -264,7 +318,7 @@ public class SceneChanger {
         timeline.getKeyFrames().add(kf);
         timeline.play();
     }
-    private static void changeGame(String name) {
+    private static void changeGame(String name) throws InterruptedException {
         switch (name) {
             case "StrandedAway":
                 StrandedAwayBTN.getStyleClass().add("strandedAwayIconSelected");
@@ -277,7 +331,7 @@ public class SceneChanger {
                 ratingIMG.getStyleClass().clear();
                 ratingIMG.getStyleClass().add("ratingT");
                 setRatingDesc(new String[] {"Fantasy Violence", "Animated Blood", "Use of Alcohol and Tobacco"});
-                updateCarousel(MainApplication.carouselURLs);
+                updateCarousel(strandedAwayCarouselImages);
                 checkGame("Stranded Away", "https://macroquiet.itch.io/stranded-away");
                 watchTrailer.setText("GAME TRAILER");
                 updateTrailer("https://youtu.be/FB92RX_obXA");
@@ -291,6 +345,8 @@ public class SceneChanger {
                         "DirectX: Version 11",
                         "OS: 64-bit Windows, macOS and Linux systems",
                         "Storage: 512MB" });
+                if (LogInChanger.receivedCredentials != null)
+                    loadUserProfile(LogInChanger.receivedCredentials.getString("username"), "Stranded Away");
                 break;
             case "Doge":
                 DogeBTN.getStyleClass().add("dogeIconSelected");
@@ -318,6 +374,8 @@ public class SceneChanger {
                         "DirectX: Version 11",
                         "OS: 64-bit Windows, macOS and Linux systems",
                         "Storage: 1GB" });
+                if (LogInChanger.receivedCredentials != null)
+                    loadUserProfile(LogInChanger.receivedCredentials.getString("username"), "Doge");
                 break;
         }
     }

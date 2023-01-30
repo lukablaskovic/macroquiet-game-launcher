@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -365,23 +364,6 @@
                                                    <padding>
                                                       <Insets bottom="32.0" left="32.0" right="32.0" />
                                                    </padding>
-                                                   <children>
-                                                      <VBox alignment="TOP_CENTER">
-                                                         <children>
-                                                            <TextField alignment="CENTER" editable="false" text="Trophie Name  Trophie Name  Trophie Name ">
-                                                               <styleClass>
-                                                                  <String fx:value="px14" />
-                                                                  <String fx:value="trophieLabel" />
-                                                               </styleClass>
-                                                            </TextField>
-                                                            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                                                               <image>
-                                                                  <Image url="@../../../images/trophies/hidden_trophy.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
                                                 </FlowPane>
                                              </children>
                                              <GridPane.margin>
