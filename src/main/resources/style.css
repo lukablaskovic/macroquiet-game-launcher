@@ -5,6 +5,22 @@
    -fx-font-family: 'Poppins Medium';
 }
 
+.textWhite {
+    -fx-text-fill: #e7e5e4;
+}
+
+.px18 {
+    -fx-font-size: 18;
+}
+
+.px14 {
+    -fx-font-size: 14;
+}
+
+.px36 {
+    -fx-font-size: 36;
+}
+
 .menuButton{
     -fx-background-color:  transparent;
     -fx-background-radius: 50px;
@@ -79,6 +95,11 @@
         #0f1119 75%,
         #0f1119
     );
+}
+
+.trophieLabel {
+    -fx-background-color: #EA4E46;
+    -fx-background-radius: 16px;
 }
 
 .rating {
