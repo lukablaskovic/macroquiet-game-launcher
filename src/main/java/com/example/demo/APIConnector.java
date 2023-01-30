@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -15,7 +16,8 @@ public class APIConnector {
     private String line;
     private final StringBuffer responseContent = new StringBuffer();
 
-    public JSONArray get(String endpoint) {
+
+    public String get(String endpoint) {
 
         try {
             URL url = new URL(endpoint);
@@ -52,9 +54,8 @@ public class APIConnector {
         finally {
             connection.disconnect();
         }
-
-        JSONArray result = new JSONArray(responseContent.toString());
-        return result;
+        String response = responseContent.toString();
+        return response;
     }
     public JSONObject post(String endpoint, JSONObject userCredentials){
         try{
