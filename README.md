@@ -11,7 +11,7 @@ Current version 1.0.
 -   Luka Blašković (lblaskovi@unipu.hr)
 
 ### Short description of available functionalities
-MacroQuiet game launcher allows players to download/launch MacroQuiet games, log in and view their trophies and watch game trailer.
+MacroQuiet game launcher allows players to download/launch MacroQuiet games, log in, view their trophies and watch the game trailers.
 
 ### Organization
 
