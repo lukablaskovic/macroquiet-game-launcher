@@ -19,3 +19,11 @@ MacroQuiet game launcher allows players to download/launch MacroQuiet games, log
 [Pula Faculty of Informatics](https://fipu.unipu.hr/)  
 Course: **Contemporary programming techniques**, Academic Year 2022./2023.  
 Mentor: **Siniša Sovilj** (https://fipu.unipu.hr/fipu/sinisa.sovilj, sinisa.sovilj@unipu.hr)
+
+### Screenshots
+
+![launcher stranded](https://github.com/lukablaskovic/macroquiet-game-launcher/blob/master/screenshots/launcher_stranded.png?raw=true)
+
+![launcher doge](https://github.com/lukablaskovic/macroquiet-game-launcher/blob/master/screenshots/launcher_doge.png?raw=true)
+
+![launcher trophies](https://github.com/lukablaskovic/macroquiet-game-launcher/blob/master/screenshots/launcher_trophies.png?raw=true)
